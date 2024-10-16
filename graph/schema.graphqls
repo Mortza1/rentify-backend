@@ -1,0 +1,40 @@
+type User {
+    id: ID!
+    name: String!
+    email: String!
+    password: String!
+    location: String!
+}
+
+type Item {
+    id: ID!
+    name: String!
+    description: String
+    category: String
+    price: Float!
+    depositRequired: Boolean!
+    availability: Boolean!
+    owner: User!
+}
+
+type Rental {
+    id: ID!
+    item: Item!
+    renter: User!
+    startDate: String!
+    endDate: String!
+    status: String!
+    depositPaid: Boolean!
+}
+
+type Query {
+    users: [User!]!
+    items: [Item!]!
+    rentals: [Rental!]!
+}
+
+type Mutation {
+    registerUser(name: String!, email: String!, password: String!, location: String!): User!
+    createItem(name: String!, description: String, category: String, price: Float!, depositRequired: Boolean!): Item!
+    rentItem(itemId: ID!, startDate: String!, endDate: String!): Rental!
+}
